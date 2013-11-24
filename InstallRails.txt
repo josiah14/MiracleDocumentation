@@ -1,0 +1,47 @@
+1. make sure apt-get is up to date
+sudo apt-get update
+
+2. make sure curl is installed
+sudo apt-get install curl
+
+3. install RVM first
+\curl -L https://get.rvm.io | bash
+3.a Add the following to your ~/.profile
+
+if [ -d "$HOME/.rvm/bin" ] ; then
+  PATH="$PATH:$HOME/.rvm/bin"
+fi
+
+source /home/josiah/.rvm/scripts/rvm
+
+4. install Ruby 2.0.0 p353 (the latest stable version of ruby)
+rvm install ruby-2.0.0-p353
+rvm alias create default ruby-2.0.0-p353
+
+5. install Rails 4.0
+gem install rails
+
+6. install jshint
+sudo apt-get install npm
+npm install jshint
+
+7. install a javascript command line interpreter
+sudo apt-get install rhino
+
+8. install postgresql
+sudo apt-get install postgresql postgresql-contrib libpq-dev
+
+9. configure postgresql
+sudo su postgres
+createuser -A -d --pwprompt <your username - no brackets>
+# when prompted for a password, make sure that password matches the one specified for that user in config/database.yml
+
+10. test the rails installation.
+git clone https://github.com/josiah14/sample_app.git
+cd sample_app
+bundle
+rake db:create
+rake db:migrate
+rails s
+# go to your web browser and enter 'localhost:3000' in your address bar.  It should launch the sample application.
+
